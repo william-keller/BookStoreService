@@ -15,4 +15,6 @@ MICROSERVICE FEATURES
 Pending implementations
 - FluentValidation
 - AutoMapper
+- Distributed Memory Cache with Redis
 - JWT Authentication - pending token generation endpoint
+- Idempotency Strategy
