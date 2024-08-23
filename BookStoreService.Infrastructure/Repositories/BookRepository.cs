@@ -41,6 +41,8 @@ namespace BookStoreService.Infrastructure.Repositories
         {
             await _context
                 .AddAsync(book, cancellationToken);
+
+            await _context.SaveChangesAsync(cancellationToken);
         }
 
         public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
@@ -49,6 +51,8 @@ namespace BookStoreService.Infrastructure.Repositories
                 .Books
                 .Where(book => book.Id == id)
                 .ExecuteDeleteAsync(cancellationToken);
+
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -51,16 +51,17 @@ namespace BookStoreService.Api.Controllers.v1
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> CreateBook([FromQuery] string title, string author, decimal price, CancellationToken cancellationToken)
+        [Consumes("application/json")]
+        public async Task<IActionResult> CreateBook([FromBody] CreateBookRequest createBookRequest, CancellationToken cancellationToken)
         {
-            await _sender.Send(new CreateBookCommand(title, author, price), cancellationToken);
+            await _sender.Send(new CreateBookCommand(createBookRequest.Title, createBookRequest.Author, createBookRequest.Price), cancellationToken);
 
             return Created();
         }
 
-        [HttpDelete("/{bookId}")]
+        [HttpDelete("{bookId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> DeleteBook([FromQueryAttribute] Guid bookId)
+        public async Task<IActionResult> DeleteBook(Guid bookId)
         {
             await _sender.Send(new DeleteBookCommand(bookId));
 
