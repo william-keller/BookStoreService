@@ -21,10 +21,13 @@ namespace BookStoreService.Tests.Application
         {
             // Arrange
             var books = new List<Book> { new() { Id = Guid.NewGuid(), Title = "Test Book" } };
-            _bookRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(books);
+            _bookRepositoryMock
+                .Setup(repo => repo.GetAllAsync(CancellationToken.None))
+                .ReturnsAsync(books);
 
             // Act
-            var result = await _getAllBooksHandler.Handle(new GetAllBooksQuery(), CancellationToken.None);
+            var result = await _getAllBooksHandler
+                .Handle(new GetAllBooksQuery(), CancellationToken.None);
 
             // Assert
             Assert.Equal(books, result);

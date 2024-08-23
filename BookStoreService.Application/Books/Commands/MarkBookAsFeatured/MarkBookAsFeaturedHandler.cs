@@ -16,11 +16,11 @@ namespace BookStoreService.Application.Books.Commands.MarkBookAsFeatured
 
         public async Task<bool> Handle(MarkBookAsFeaturedCommand request, CancellationToken cancellationToken)
         {
-            var book = await _bookRepository.GetByIdAsync(request.BookId);
+            var book = await _bookRepository.GetByIdAsync(request.BookId, cancellationToken);
             if (book == null)
                 return false;
 
-            return await _bookService.MarkBookAsFeaturedAsync(book);
+            return await _bookService.MarkBookAsFeaturedAsync(book, cancellationToken);
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IRepository<T>
     {
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

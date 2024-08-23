@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEntityFrameworkSqlite()
+builder.Services
     .AddDbContext<BookStoreDbContext>(options => options.UseSqlite("Data Source=bookstore.db"));
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
@@ -18,7 +18,10 @@ builder.Services.AddScoped<IBookDomainService, BookDomainService>();
 
 builder.Services.AddApplicationServices();
 
-builder.Services.AddMemoryCache();
+builder.Services.AddMemoryCache(options =>
+{
+    options.SizeLimit = 1024 * 1024; // 1MB
+});
 
 builder.Services.AddHealthChecks();
 
@@ -38,6 +41,7 @@ builder.Services.AddApiVersioning(options =>
         new HeaderApiVersionReader("X-Api-Version"));
 });
 
+#region authentication
 //builder.Services.AddAuthentication(options =>
 //{
 //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -56,6 +60,7 @@ builder.Services.AddApiVersioning(options =>
 //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt:IssuerSigningKey"] ?? throw new Exception()))
 //    };
 //});
+#endregion
 
 builder.Services.AddAuthorization();
 
@@ -74,8 +79,10 @@ app.UseHealthChecks("/health");
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+#region authentication
+//app.UseAuthentication();
+//app.UseAuthorization();
+#endregion
 
 app.MapControllers();
 

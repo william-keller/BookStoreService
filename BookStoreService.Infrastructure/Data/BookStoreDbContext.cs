@@ -17,7 +17,6 @@ namespace BookStoreService.Infrastructure.Data
             // Seed data
             modelBuilder.Entity<Book>().HasData(
                 new Book { Id = Guid.Parse("1e209cbf-5175-4205-89cb-0cd33ea24987"), Title = "1984", Author = "George Orwell" },
-                new Book { Id = Guid.Parse("38711e05-66c6-4d8d-8a72-0894346fa4c5"), Title = "To Kill a Mockingbird", Author = "Harper Lee" },
                 new Book { Id = Guid.Parse("cfe0191a-bde6-4b6c-8bd3-d097cf557043"), Title = "The Great Gatsby", Author = "F. Scott Fitzgerald" }
             );
         }

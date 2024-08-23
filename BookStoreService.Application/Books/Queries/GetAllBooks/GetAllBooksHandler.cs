@@ -15,7 +15,7 @@ namespace BookStoreService.Application.Books.Queries.GetAllBooks
 
         public async Task<IEnumerable<Book>> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
         {
-            return await _bookRepository.GetAllAsync();
+            return await _bookRepository.GetAllAsync(cancellationToken);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace BookStoreService.Application.Books.Commands.MarkBookAsFeatured
 {
-    public class MarkBookAsFeaturedCommand : IRequest<bool>
+    public record MarkBookAsFeaturedCommand : IRequest<bool>
     {
         public Guid BookId { get; }
 
