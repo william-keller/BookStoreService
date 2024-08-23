@@ -8,7 +8,11 @@ MICROSERVICE FEATURES
 - Repository Pattern
 - DDD
 - Unit Tests
-- JWT Authentication - pending token generation endpoint
 - Swagger OpenAPI Explorer
 - Docker/Container Support
 - Healthcheck endpoint for Monitoring/Observability
+
+Pending implementations
+- FluentValidation
+- AutoMapper
+- JWT Authentication - pending token generation endpoint
